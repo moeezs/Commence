@@ -1,3 +1,5 @@
 flask==2.1.0
 PyPDF2==2.10.0
 ics==0.7
+Flask>=2.2.0
+Werkzeug==2.0.3
