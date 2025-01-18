@@ -1,6 +1,4 @@
-import PyPDF2
 import google.generativeai as genai
-import json
 import dotenv
 import os
 
@@ -55,25 +53,7 @@ def analyze_syllabus(syllabus_text):
     response = model.generate_content(submit)
     print('got it')
     return response.text
-    
-    # Assuming the Gemini model returns the results in the desired format as text
-    #return json.loads(response.text)
 
-
-def save_to_files(important_dates_json, weightings_json):
-    """
-    Function to save the extracted important dates and course weightings into two separate files.
-    """
-    # Save important dates to a file
-    with open("important_dates.json", "w") as f:
-        json.dump(important_dates_json, f, indent=4)
-
-    # Save course weightings to a file
-    with open("course_weightings.json", "w") as f:
-        json.dump(weightings_json, f, indent=4)
-
-
-# Example usage
 syllabus_text = """
 Week 1:
 - Lecture on AI basics (January 10, 2025)

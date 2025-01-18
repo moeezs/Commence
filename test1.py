@@ -15,4 +15,4 @@ save_to_files(important_dates, weightings)
 
 json_to_ics('important_dates.json')
 
-# a file is saved in 
+# a file is saved in this directory as important_dates.json, course_weightings.json, important_dates.ics
