@@ -4,17 +4,7 @@ from datetime import datetime
 import os
 
 def json_to_ics(json_file_path, output_ics_path=None):
-    """
-    Convert a JSON file of important dates to an ICS calendar file.
-    
-    Args:
-        json_file_path (str): Path to the JSON file containing important dates
-        output_ics_path (str, optional): Path to save the ICS file. 
-                                         If not provided, uses the same name as JSON file with .ics extension
-    
-    Returns:
-        str: Path to the created ICS file
-    """
+
     # Check if file exists and is not empty
     if not os.path.exists(json_file_path) or os.path.getsize(json_file_path) == 0:
         print(f"Error: {json_file_path} is empty or does not exist.")

@@ -54,26 +54,4 @@ def analyze_syllabus(syllabus_text):
     print('got it')
     return response.text
 
-syllabus_text = """
-Week 1:
-- Lecture on AI basics (January 10, 2025)
-- First Assignment Due: January 20, 2025 (11:59 PM)
-
-Week 5:
-- Midterm Exam: February 15, 2025 (10:00 AM)
-
-Week 8:
-- Final Exam: April 30, 2025 (2:00 PM)
-
-Course components:
-- Assignments: 30%
-- Midterm Exam: 20%
-- Final Exam: 50%
-"""
-
-# Step 1: Analyze the syllabus
-# result = analyze_syllabus(syllabus_text)
-
-# # Step 2: Separate and save the output into two different JSON files
-# save_to_files(result['important_dates'], result['course_weightings'])
 

@@ -32,16 +32,6 @@ UPLOAD_FOLDER = 'user_data'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
 
-# def get_user_folder():
-#     """Get or create user-specific folder"""
-#     if 'user_id' not in session:
-#         session.permanent = True
-#         session['user_id'] = str(uuid.uuid4())
-#         session['courses'] = []  # Initialize courses list in session
-    
-#     user_folder = os.path.join(app.config['UPLOAD_FOLDER'], session['user_id'])
-#     os.makedirs(user_folder, exist_ok=True)
-#     return user_folder
 
 def get_user_folder():
     """Get or create user-specific folder"""
@@ -166,6 +156,29 @@ def download_calendar(course_name):
             as_attachment=True,
             download_name=f'{course_name}_calendar.ics'
         )
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/delete/<course_name>', methods=['DELETE'])
+def delete_course(course_name):
+    try:
+        user_folder = get_user_folder()
+        base_name = secure_filename(course_name)
+        
+        # Files to delete
+        files_to_delete = [
+            f'important_dates_{base_name}.json',
+            f'course_weightings_{base_name}.json',
+            f'important_dates_{base_name}.ics'
+        ]
+        
+        # Delete each file if it exists
+        for filename in files_to_delete:
+            file_path = os.path.join(user_folder, filename)
+            if os.path.exists(file_path):
+                os.remove(file_path)
+        
+        return jsonify({'success': True})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
